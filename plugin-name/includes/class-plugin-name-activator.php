@@ -1,5 +1,7 @@
 <?php
 
+namespace Plugin_Name\Includes;
+
 /**
  * Fired during plugin activation
  *
@@ -8,26 +10,15 @@
  *
  * @package    Plugin_Name
  * @subpackage Plugin_Name/includes
- */
-
-/**
- * Fired during plugin activation.
- *
- * This class defines all code necessary to run during the plugin's activation.
- *
- * @since      1.0.0
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
  * @author     Your Name <email@example.com>
  */
 class Plugin_Name_Activator {
 
 	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
+	 * Plugin activation method
 	 *
 	 * @since    1.0.0
+	 * @see register_activation_hook
 	 */
 	public static function activate() {
 

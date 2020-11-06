@@ -1,5 +1,11 @@
 <?php
 
+namespace Plugin_Name;
+
+use Plugin_Name\Includes\Plugin_Name;
+use Plugin_Name\Includes\Plugin_Name_Activator;
+use Plugin_Name\Includes\Plugin_Name_Deactivator;
+
 /**
  * The plugin bootstrap file
  *
@@ -38,11 +44,42 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'PLUGIN_NAME_VERSION', '1.0.0' );
 
 /**
+ * Define global path constants
+ */
+define( 'PLUGIN_NAME_PLUGIN_FILE', __FILE__ );
+define( 'PLUGIN_NAME_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define( 'PLUGIN_NAME_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
+/**
+ * Register autoloader
+ */
+spl_autoload_register(function($required_file) {
+
+	# Transform file name from class based to file based
+	$fixed_name = strtolower( str_ireplace( '_', '-', $required_file ) );
+	$file_path = explode( '\\', $fixed_name );
+	$last_index = count( $file_path ) - 1;
+	$file_name = "class-{$file_path[$last_index]}.php";
+
+	# Get fully qualified path
+	$fully_qualified_path =  trailingslashit( dirname(__FILE__) );
+	for ( $key = 1; $key < $last_index; $key++ ) {
+		$fully_qualified_path .= trailingslashit( $file_path[ $key ] );
+	}
+	$fully_qualified_path .= $file_name;
+
+	# Include the file
+	if ( stream_resolve_include_path($fully_qualified_path) ) {
+		include_once $fully_qualified_path;
+	}
+
+});
+
+/**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-plugin-name-activator.php
  */
 function activate_plugin_name() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-activator.php';
 	Plugin_Name_Activator::activate();
 }
 
@@ -51,18 +88,11 @@ function activate_plugin_name() {
  * This action is documented in includes/class-plugin-name-deactivator.php
  */
 function deactivate_plugin_name() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-deactivator.php';
 	Plugin_Name_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_plugin_name' );
-register_deactivation_hook( __FILE__, 'deactivate_plugin_name' );
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name.php';
+register_activation_hook( PLUGIN_NAME_PLUGIN_FILE, 'activate_plugin_name' );
+register_deactivation_hook( PLUGIN_NAME_PLUGIN_FILE, 'deactivate_plugin_name' );
 
 /**
  * Begins execution of the plugin.
