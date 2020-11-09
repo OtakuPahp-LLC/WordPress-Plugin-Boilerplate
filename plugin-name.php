@@ -2,6 +2,8 @@
 
 namespace Plugin_Name;
 
+use Plugin_Name\Includes\Plugin_Name_i18n;
+
 /**
  * The plugin bootstrap file
  *
