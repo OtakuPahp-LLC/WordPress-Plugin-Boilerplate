@@ -116,8 +116,8 @@ class Plugin_Name_Init {
         }
         $this->plugin_name = 'plugin-name';
 
-        register_activation_hook( PLUGIN_NAME_PLUGIN_FILE, [$this, 'activate_plugin_name']);
-        register_deactivation_hook( PLUGIN_NAME_PLUGIN_FILE, [$this, 'deactivate_plugin_name']);
+        register_activation_hook( PLUGIN_NAME_PLUGIN_FILE, [$this, 'activate_plugin']);
+        register_deactivation_hook( PLUGIN_NAME_PLUGIN_FILE, [$this, 'deactivate_plugin']);
 
         $this->set_locale();
         $this->define_hooks();
@@ -190,7 +190,7 @@ class Plugin_Name_Init {
      * @access   public
      * @see register_activation_hook
      */
-    public function activate_plugin_name() {
+    public function activate_plugin() {
         /**
          * Fired during plugin activation.
          *
@@ -207,7 +207,7 @@ class Plugin_Name_Init {
      * @access   public
      * @see register_deactivation_hook
      */
-    public function deactivate_plugin_name() {
+    public function deactivate_plugin() {
         /**
          * Fired during plugin deactivation.
          *
