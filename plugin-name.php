@@ -79,7 +79,7 @@ spl_autoload_register(function($required_file) {
  * The code that runs during plugin activation.
  * This action is documented in includes/class-plugin-name-activator.php
  */
-function activate_plugin_name() {
+function activate_plugin() {
 	Plugin_Name_Activator::activate();
 }
 
@@ -87,7 +87,7 @@ function activate_plugin_name() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-plugin-name-deactivator.php
  */
-function deactivate_plugin_name() {
+function deactivate_plugin() {
 	Plugin_Name_Deactivator::deactivate();
 }
 
