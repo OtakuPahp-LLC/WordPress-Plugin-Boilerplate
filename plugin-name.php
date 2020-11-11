@@ -225,4 +225,4 @@ class Plugin_Name_Init {
  *
  * @since    1.0.0
  */
-$plugin = new Plugin_Name_Init();
+(new Plugin_Name_Init());
