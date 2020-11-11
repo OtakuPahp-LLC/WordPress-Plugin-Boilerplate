@@ -152,11 +152,10 @@ class Plugin_Name_Init {
 
         /**
          * The following lines will load public Front-end CSS/JS.
-         * In case of use, files should be created and methods should be implemented,
-         * Methods defined for 'admin_enqueue_scripts' hook could be used as templates.
+         * If you need to load scripts and styles on admin, use the hook 'admin_enqueue_scripts'.
          */
-        add_action( 'admin_enqueue_scripts', [$plugin, 'enqueue_styles']);
-        add_action( 'admin_enqueue_scripts', [$plugin, 'enqueue_scripts']);
+        add_action( 'wp_enqueue_scripts', [$plugin, 'enqueue_styles']);
+        add_action( 'wp_enqueue_scripts', [$plugin, 'enqueue_scripts']);
 
     }
 
