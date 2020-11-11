@@ -91,8 +91,8 @@ function deactivate_plugin_name() {
 	Plugin_Name_Deactivator::deactivate();
 }
 
-register_activation_hook( PLUGIN_NAME_PLUGIN_FILE, 'activate_plugin_name' );
-register_deactivation_hook( PLUGIN_NAME_PLUGIN_FILE, 'deactivate_plugin_name' );
+register_activation_hook( PLUGIN_NAME_PLUGIN_FILE, 'activate_plugin' );
+register_deactivation_hook( PLUGIN_NAME_PLUGIN_FILE, 'deactivate_plugin' );
 
 /**
  * Begins execution of the plugin.
