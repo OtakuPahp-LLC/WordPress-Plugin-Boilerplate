@@ -79,20 +79,13 @@ spl_autoload_register(function($required_file) {
  * The code that runs during plugin activation.
  * This action is documented in includes/class-plugin-name-activator.php
  */
-function activate_plugin() {
-	Plugin_Name_Activator::activate();
-}
+register_activation_hook( PLUGIN_NAME_PLUGIN_FILE, [Plugin_Name_Activator::class, 'activate'] );
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-plugin-name-deactivator.php
  */
-function deactivate_plugin() {
-	Plugin_Name_Deactivator::deactivate();
-}
-
-register_activation_hook( PLUGIN_NAME_PLUGIN_FILE, 'activate_plugin' );
-register_deactivation_hook( PLUGIN_NAME_PLUGIN_FILE, 'deactivate_plugin' );
+register_deactivation_hook( PLUGIN_NAME_PLUGIN_FILE, [Plugin_Name_Deactivator::class, 'deactivate'] );
 
 /**
  * Begins execution of the plugin.
