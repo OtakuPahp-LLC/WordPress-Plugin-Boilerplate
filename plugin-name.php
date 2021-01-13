@@ -109,11 +109,7 @@ class Plugin_Name_Init {
      * @access   public
      */
     public function __construct() {
-        if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
-            $version = PLUGIN_NAME_VERSION;
-        } else {
-            $version = '1.0.0';
-        }
+        
         $this->plugin_name = 'plugin-name';
 
         register_activation_hook( PLUGIN_NAME_PLUGIN_FILE, [$this, 'activate_plugin']);
@@ -121,6 +117,7 @@ class Plugin_Name_Init {
 
         $this->set_locale();
         $this->define_hooks();
+        
     }
 
     /**
