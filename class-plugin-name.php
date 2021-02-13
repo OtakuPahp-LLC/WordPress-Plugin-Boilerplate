@@ -53,7 +53,7 @@ class Plugin_Name {
      *
      * @since    1.0.0
      * @access public
-     * @see admin_enqueue_scripts
+     * @see wp_enqueue_scripts
      */
     public function enqueue_styles() {
 
@@ -66,7 +66,7 @@ class Plugin_Name {
      *
      * @since    1.0.0
      * @access public
-     * @see admin_enqueue_scripts
+     * @see wp_enqueue_scripts
      */
     public function enqueue_scripts() {
 
