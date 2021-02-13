@@ -2,8 +2,6 @@
 
 namespace Plugin_Name;
 
-use Plugin_Name\Includes\Plugin_Name_i18n;
-
 /**
  * The plugin bootstrap file
  *
@@ -48,7 +46,30 @@ define( 'PLUGIN_NAME_PLUGIN_FILE', __FILE__ );
 define( 'PLUGIN_NAME_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PLUGIN_NAME_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
-require_once PLUGIN_NAME_PLUGIN_PATH . 'includes/autoloader.php';
+/**
+ * Register autoloader
+ */
+spl_autoload_register(function($required_file) {
+
+    # Transform file name from class based to file based
+    $fixed_name = strtolower( str_ireplace( '_', '-', $required_file ) );
+    $file_path = explode( '\\', $fixed_name );
+    $last_index = count( $file_path ) - 1;
+    $file_name = "class-{$file_path[$last_index]}.php";
+
+    # Get fully qualified path
+    $fully_qualified_path =  trailingslashit( dirname(__FILE__) );
+    for ( $key = 1; $key < $last_index; $key++ ) {
+        $fully_qualified_path .= trailingslashit( $file_path[ $key ] );
+    }
+    $fully_qualified_path .= $file_name;
+
+    # Include the file
+    if ( stream_resolve_include_path($fully_qualified_path) ) {
+        include_once $fully_qualified_path;
+    }
+
+});
 
 /**
  * The core plugin class that is used to define internationalization and site hooks.
@@ -87,30 +108,10 @@ class Plugin_Name_Init {
     public function __construct() {
         
         $this->plugin_name = 'plugin-name';
+        $this->version = PLUGIN_NAME_VERSION;
 
-        register_activation_hook( PLUGIN_NAME_PLUGIN_FILE, [$this, 'activate_plugin']);
-        register_deactivation_hook( PLUGIN_NAME_PLUGIN_FILE, [$this, 'deactivate_plugin']);
-
-        $this->set_locale();
         $this->define_hooks();
         
-    }
-
-    /**
-     * Define the locale for this plugin for internationalization.
-     *
-     * Uses the Plugin_Name_i18n class in order to set the domain and to register the hook
-     * with WordPress.
-     *
-     * @since    1.0.0
-     * @access   private
-     */
-    private function set_locale() {
-
-        $plugin_i18n = new Plugin_Name_i18n();
-
-        add_action( 'plugins_loaded', [$plugin_i18n, 'load_plugin_textdomain']);
-
     }
 
     /**
@@ -153,38 +154,6 @@ class Plugin_Name_Init {
      */
     public function get_version() {
         return $this->version;
-    }
-
-    /**
-     * The code that runs during plugin activation.
-     *
-     * @since    1.0.0
-     * @access   public
-     * @see register_activation_hook
-     */
-    public function activate_plugin() {
-        /**
-         * Fired during plugin activation.
-         *
-         * This class defines all code necessary to run during the plugin's activation.
-         *
-         *
-         */
-    }
-
-    /**
-     * The code that runs during plugin deactivation.
-     *
-     * @since    1.0.0
-     * @access   public
-     * @see register_deactivation_hook
-     */
-    public function deactivate_plugin() {
-        /**
-         * Fired during plugin deactivation.
-         *
-         * This class defines all code necessary to run during the plugin's deactivation.
-         */
     }
 
 }

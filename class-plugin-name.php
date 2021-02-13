@@ -53,11 +53,11 @@ class Plugin_Name {
      *
      * @since    1.0.0
      * @access public
-     * @see admin_enqueue_scripts
+     * @see wp_enqueue_scripts
      */
     public function enqueue_styles() {
 
-        wp_enqueue_style( $this->plugin_name, PLUGIN_NAME_PLUGIN_URL . 'css/plugin-name.css', [], $this->version, 'all' );
+        wp_enqueue_style( $this->plugin_name, PLUGIN_NAME_PLUGIN_URL . 'assets/plugin-name.css', [], $this->version, 'all' );
 
     }
 
@@ -66,11 +66,11 @@ class Plugin_Name {
      *
      * @since    1.0.0
      * @access public
-     * @see admin_enqueue_scripts
+     * @see wp_enqueue_scripts
      */
     public function enqueue_scripts() {
 
-        wp_enqueue_script( $this->plugin_name, PLUGIN_NAME_PLUGIN_URL . 'js/plugin-name.js', ['jquery'], $this->version, false );
+        wp_enqueue_script( $this->plugin_name, PLUGIN_NAME_PLUGIN_URL . 'assets/plugin-name.js', ['jquery'], $this->version, false );
 
     }
 
