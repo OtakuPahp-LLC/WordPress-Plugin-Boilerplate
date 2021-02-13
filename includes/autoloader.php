@@ -12,7 +12,7 @@ spl_autoload_register(function($required_file) {
     $file_name = "class-{$file_path[$last_index]}.php";
 
     # Get fully qualified path
-    $fully_qualified_path =  trailingslashit( dirname(__FILE__) );
+    $fully_qualified_path =  trailingslashit( dirname( __FILE__, 2 ) );
     for ( $key = 1; $key < $last_index; $key++ ) {
         $fully_qualified_path .= trailingslashit( $file_path[ $key ] );
     }
