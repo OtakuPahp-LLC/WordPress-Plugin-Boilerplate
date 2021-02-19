@@ -9,7 +9,7 @@ namespace Plugin_Name\Back_Office;
  * @since      1.0.0
  *
  * @package    Plugin_Name
- * @subpackage Plugin_Name/back-office
+ * @subpackage Plugin_Name/Back_Office
  * @author     Your Name <email@example.com>
  */
 class Plugin_Name_Back_Office {
