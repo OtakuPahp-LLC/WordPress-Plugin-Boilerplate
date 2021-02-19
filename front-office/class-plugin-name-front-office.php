@@ -9,7 +9,7 @@ namespace Plugin_Name\Front_Office;
  * @since      1.0.0
  *
  * @package    Plugin_Name
- * @subpackage Plugin_Name/front-office
+ * @subpackage Plugin_Name/Front_Office
  * @author     Your Name <email@example.com>
  */
 class Plugin_Name_Front_Office {
