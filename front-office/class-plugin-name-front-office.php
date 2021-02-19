@@ -53,7 +53,7 @@ class Plugin_Name_Front_Office {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, PLUGIN_NAME_PLUGIN_URL . 'front-office/css/plugin-name-back-office.css', [], $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, PLUGIN_NAME_PLUGIN_URL . 'front-office/css/plugin-name-front-office.css', [], $this->version, 'all' );
 
 	}
 
@@ -64,7 +64,7 @@ class Plugin_Name_Front_Office {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->plugin_name, PLUGIN_NAME_PLUGIN_URL . 'front-office/js/plugin-name-back-office.js', [ 'jquery' ], $this->version, false );
+		wp_enqueue_script( $this->plugin_name, PLUGIN_NAME_PLUGIN_URL . 'front-office/js/plugin-name-front-office.js', [ 'jquery' ], $this->version, false );
 
 	}
 
